@@ -27,16 +27,19 @@ O aplicativo deve ser capaz de:
 * Criar uma cidade com (nome, nome do país)
 * Listar cidades cadastradas
 
-* Criar uma localidade com (nome, tipo[Restaurante, Residencial, Outro], endereço, notas)
+* Criar uma localidade com (nome, tipo[Restaurante, Residencial, Outro], endereço, notas e coordenada [latitude e longitude])
 * Editar uma localidade
 * Listar localidades
+    Na lista de localidades, adicionar um botão para cada item que quando clicado abre um mapa exibindo a localidade em um mapa usando a coordenada (latitude e longitude) cadastrados.
 * Deletar uma localidade
 
 
 #### A demonstrar:
 * Persistência de dados utilizando Redux
-* Um teste de componente usando Jest
-* Incluir alguma animação
+* Navegação entre telas
+
+#### Opcional:
+* Implementar uma API para persistir os dados na sua tecnologia preferida (node, firebase, serviço de API, etc.)
 
 ### Sugestão de layout base
 
