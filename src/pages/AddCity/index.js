@@ -6,7 +6,13 @@ import { Creators as AddCitiesActions } from "../../store/ducks/cities";
 
 import { View, Text, TextInput } from "react-native";
 
-import { Container, Input, ButtonSubmit, TextButton } from "./styles";
+import {
+  Container,
+  Input,
+  ButtonSubmit,
+  TextButton,
+  TextDefault
+} from "./styles";
 
 import Icon from "react-native-vector-icons/FontAwesome";
 
@@ -27,16 +33,20 @@ class AddCity extends Component {
   addNewCity = () => {
     const { city, country } = this.state;
 
-    const obj = {
-      city,
-      country
-    };
+    if (city && country) {
+      const obj = {
+        city,
+        country
+      };
 
-    const { addCity } = this.props;
+      const { addCity } = this.props;
 
-    addCity(obj);
+      addCity(obj);
 
-    this.setState({ city: "", country: "" });
+      this.setState({ city: "", country: "" });
+    } else {
+      alert("Preencha todos os campos");
+    }
   };
 
   render() {
@@ -44,7 +54,7 @@ class AddCity extends Component {
 
     return (
       <Container>
-        <Text>CITIES</Text>
+        <TextDefault>CITIES</TextDefault>
         <Input
           value={city}
           onChangeText={text => this.setState({ city: text })}

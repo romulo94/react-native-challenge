@@ -4,7 +4,7 @@ import { colors, metrics } from "../../styles";
 export const Container = styled.View`
   flex: 1;
   background: ${colors.primary};
-  align-items: stretch;
+  align-items: center;
   justify-content: center;
   padding: ${metrics.basePadding};
 `;
@@ -30,4 +30,9 @@ export const ButtonSubmit = styled.TouchableOpacity`
 
 export const TextButton = styled.Text`
   color: ${colors.white};
+`;
+export const TextDefault = styled.Text`
+  color: ${colors.white};
+  font-size: 24px;
+  font-weight: bold;
 `;
