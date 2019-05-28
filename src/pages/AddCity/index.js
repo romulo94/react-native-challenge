@@ -1,4 +1,8 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+import { Creators as AddCitiesActions } from "../../store/ducks/cities";
 
 import { View, Text, TextInput } from "react-native";
 
@@ -10,7 +14,7 @@ const TabIcon = ({ tintColor }) => (
   <Icon name="plus" size={20} color={tintColor} />
 );
 
-export default class AddCity extends Component {
+class AddCity extends Component {
   static navigationOptions = {
     tabBarIcon: TabIcon
   };
@@ -18,6 +22,21 @@ export default class AddCity extends Component {
   state = {
     city: "",
     country: ""
+  };
+
+  addNewCity = () => {
+    const { city, country } = this.state;
+
+    const obj = {
+      city,
+      country
+    };
+
+    const { addCity } = this.props;
+
+    addCity(obj);
+
+    this.setState({ city: "", country: "" });
   };
 
   render() {
@@ -40,10 +59,22 @@ export default class AddCity extends Component {
           autoCorrect={false}
           placeholder="Country name"
         />
-        <ButtonSubmit onPress={() => this.setState({ city: "", country: "" })}>
+        <ButtonSubmit onPress={() => this.addNewCity()}>
           <TextButton>Submit</TextButton>
         </ButtonSubmit>
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  data: state.data
+});
+
+const mapDispatchToProps = dispatch =>
+  bindActionCreators(AddCitiesActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(AddCity);

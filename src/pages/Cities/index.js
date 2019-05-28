@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
@@ -12,7 +13,7 @@ const TabIcon = ({ tintColor }) => (
   <Icon name="city-variant-outline" size={20} color={tintColor} />
 );
 
-export default class Cities extends Component {
+class Cities extends Component {
   static navigationOptions = {
     tabBarIcon: TabIcon
   };
@@ -37,13 +38,14 @@ export default class Cities extends Component {
   );
 
   render() {
-    const { list } = this.state;
+    const { list } = this.props;
     return (
       <Container>
         <Header />
 
         <FlatList
-          keyExtractor={item => JSON.stringify(item.id)}
+          style={{ marginTop: 30 }}
+          keyExtractor={() => JSON.stringify(Math.random())}
           data={list}
           renderItem={this._renderItemData}
         />
@@ -51,3 +53,9 @@ export default class Cities extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  list: state.cities.data
+});
+
+export default connect(mapStateToProps)(Cities);
