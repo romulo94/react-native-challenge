@@ -3,7 +3,7 @@
  */
 
 export const Types = {
-  ADD_CITY: "LOAD_REPOSITORIES_ADD_CITY"
+  ADD_CITY: "ADD_CITY"
 };
 
 /**

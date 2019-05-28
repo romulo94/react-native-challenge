@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
+import { withNavigation } from "react-navigation";
 import { View, Text, FlatList, TouchableOpacity } from "react-native";
 
 import Header from "../../components/Header";
 
 import { Container, ItemList, TextListItem } from "./styles";
-
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
-
-const TabIcon = ({ tintColor }) => (
-  <Icon name="city-variant-outline" size={20} color={tintColor} />
-);
+import { metrics, colors } from "../../styles";
 
 class Cities extends Component {
   static navigationOptions = {
-    tabBarIcon: TabIcon
+    title: "CITIES",
+    headerStyle: {
+      backgroundColor: colors.primary
+    },
+
+    headerTintColor: "#fff",
+    headerTitleStyle: {
+      fontWeight: "bold"
+    }
   };
 
   state = {
@@ -31,23 +34,23 @@ class Cities extends Component {
     ]
   };
 
-  _renderItemData = ({ item }) => (
-    <ItemList>
+  _renderItemData = navigate => ({ item }) => (
+    <ItemList onPress={() => navigate("Local", { title: item.city })}>
       <TextListItem>{item.city}</TextListItem>
     </ItemList>
   );
 
   render() {
-    const { list } = this.props;
+    const {
+      list,
+      navigation: { navigate }
+    } = this.props;
     return (
       <Container>
-        <Header />
-
         <FlatList
-          style={{ marginTop: 30 }}
           keyExtractor={() => JSON.stringify(Math.random())}
           data={list}
-          renderItem={this._renderItemData}
+          renderItem={this._renderItemData(navigate)}
         />
       </Container>
     );
@@ -58,4 +61,4 @@ const mapStateToProps = state => ({
   list: state.cities.data
 });
 
-export default connect(mapStateToProps)(Cities);
+export default withNavigation(connect(mapStateToProps)(Cities));
