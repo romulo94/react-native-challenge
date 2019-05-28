@@ -4,6 +4,8 @@ import {
   createBottomTabNavigator
 } from "react-navigation";
 
+import { colors } from "./styles";
+
 import Cities from "./pages/Cities";
 import AddCity from "./pages/AddCity";
 import Welcome from "./pages/Welcome";
@@ -19,14 +21,13 @@ const Routes = createAppContainer(
         },
         {
           initialRouteName: "AddCity",
-
           tabBarOptions: {
             showIcon: true,
             showLabel: true,
-            activeTintColor: "#9b26b0",
-            inactiveTintColor: "#8f8f8f",
+            activeTintColor: colors.primary,
+            inactiveTintColor: colors.secundary,
             style: {
-              backgroundColor: "white"
+              backgroundColor: colors.white
             }
           }
         }
