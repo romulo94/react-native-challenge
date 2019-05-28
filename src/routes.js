@@ -20,7 +20,7 @@ const Routes = createAppContainer(
           AddCity
         },
         {
-          initialRouteName: "AddCity",
+          initialRouteName: "Cities",
           tabBarOptions: {
             showIcon: true,
             showLabel: true,
