@@ -1,14 +1,18 @@
 import React, { Component } from "react";
 
-import { View } from "react-native";
+import { View, Text } from "react-native";
 
-// import { Container } from './styles';
+import { Container } from "./styles";
 
 export default class LocalCity extends Component {
   static navigationOptions = ({ navigation }) => ({
     title: navigation.getParam("title")
   });
   render() {
-    return <View />;
+    return (
+      <Container>
+        <Text>Oi</Text>
+      </Container>
+    );
   }
 }
